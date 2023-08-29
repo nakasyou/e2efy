@@ -21,9 +21,30 @@ export default (() => {
     fileName: string,
     fileId: string,
     removePassword: string
+    password?: string
   }[]>([])
+  const [shareIndex, setShareIndex] = createSignal<number | false>(false)
   return (
     <div>
+      <div>
+        {
+          (shareIndex() !== false) && <div class='fixed'>
+            <div>共有</div>
+            {
+              (() => {
+                const data = uploadedFiles()[shareIndex()]
+                const link = location.href + '#' + data.fileId + data.password ? `-${data.password}` : '!
+                return <div>
+                  <div>
+                    ダウンロードリンク: 
+                    { link }
+                  </div>
+                </div>
+              })()
+            }
+          </div>
+        }
+      </div>
       <div class="text-2xl text-center">Upload</div>
       <div class="grid bg-secondary text-on-secondary grid-rows-2 lg:grid-cols-2">
         <div>
@@ -98,6 +119,7 @@ export default (() => {
             fileName: resJson.FileName,
             fileId: resJson.FileID,
             removePassword: resJson.RemovePassword,
+            password: e2eeKey(),
           }])
           alert(JSON.stringify(resJson))
         }}>アップロード</button>
@@ -108,12 +130,15 @@ export default (() => {
           <div>Remove Password</div>
           <div></div>
           {
-            uploadedFiles().map(data => {
+            uploadedFiles().map((data, index) => {
               return [
                 <div>{ data.fileName }</div>,
                 <div>{ data.removePassword }</div>,
                 <div>
-                  <a class='filled-button'>共有</a>
+                  <a class='filled-button' onClick={() => {setShareIndex(index)
+
+
+                  }}>共有</a>
                 </div>
               ]
             })
