@@ -136,9 +136,8 @@ export default (() => {
             fileName: resJson.FileName,
             fileId: resJson.FileID,
             removePassword: resJson.RemovePassword,
-            password: e2eeKey(),
+            password: enableE2ee() ? e2eeKey() : null,
           }])
-          alert(JSON.stringify(resJson))
         }}>アップロード</button>
       </div>
       <div>
