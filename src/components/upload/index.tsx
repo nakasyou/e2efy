@@ -84,7 +84,13 @@ export default (() => {
             
             fileData = new File([b64], fileData.name)
           }
-          alert(fileData)
+          const formData = new FormData()
+          formData.append('file', fileData)
+          const resJson = await fetch('https://api.end2end.tech/upload', {
+            method: 'post',
+            body: formData
+          }).then(res => res.json())
+          alert(JSON.stringify(resJson))
         }}>アップロード</button>
       </div>
     </div>
