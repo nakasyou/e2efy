@@ -9,6 +9,9 @@ const blob2BinaryString = (blob: Blob): Promise<string> => {
     reader.readAsBinaryString(blob)
   })
 }
+const b64ToBuff = (data: string) => {
+    return new Uint8Array([...atob(data)].map(s => s.charCodeAt(0)))
+}
 export default (() => {
   const [enableE2ee, setEnableE2ee] = createSignal(false)
   const [file, setFile] = createSignal(new Blob())
@@ -76,7 +79,7 @@ export default (() => {
                 padding: CryptoJS.pad.Pkcs7
               }
             )
-            alert(encrypted)
+            alert(b64ToBuff(encrypted))
           }
 
 
