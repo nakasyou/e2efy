@@ -9,12 +9,10 @@ const blob2BinaryString = (blob: Blob): Promise<string> => {
     reader.readAsBinaryString(blob)
   })
 }
-const b64ToBuff = (data: string) => {
-  const raw = atob(data);
-  return Uint8Array.from(Array.prototype.map.call(raw, (x) => { 
-    return x.charCodeAt(0)
-  }))
+const b64ToBuff = async (b64) => {
+  await fetch(`data:text/plain;base64,${b64}`).then(res => res.arrayBuffer()).then(buff => new Uint8Array(buff))
 }
+
 export default (() => {
   const [enableE2ee, setEnableE2ee] = createSignal(false)
   const [file, setFile] = createSignal(new Blob())
