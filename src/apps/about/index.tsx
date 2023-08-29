@@ -1,7 +1,7 @@
 import type { Component } from 'solid-js'
 
-export default () => {
+export default (() => {
   return <>
     <div>About</div>
   </>
-} satisfies Component
+}) satisfies Component
