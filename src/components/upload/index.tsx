@@ -3,7 +3,7 @@ import { createSignal } from "solid-js"
 
 export default (() => {
   const [enableE2ee, setEnableE2ee] = createSignal(false)
-  const [file, setFile] = createSignal(new File())
+  const [file, setFile] = createSignal(new Blob())
   return (
     <div>
       <div class="text-2xl text-center">Upload</div>
