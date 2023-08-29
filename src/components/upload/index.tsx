@@ -1,7 +1,7 @@
 import type { Component } from 'solid-js'
 import { createSignal } from "solid-js"
 import CryptoJS from 'crypto-js'
-import {QRCodeCanvas} from 'solid-qr-code';
+import {QRCodeSVG} from 'solid-qr-code';
     
 const blob2BinaryString = (blob: Blob): Promise<string> => {
   return new Promise((resolve) => {
@@ -44,20 +44,14 @@ export default (() => {
                       </div>
                     </div>
                     <div class="flex justify-center">
-<QRCodeCanvas
+<QRCodeSVG
   value={link}
   size={128}
   bgColor={"#ffffff"}
   fgColor={"#000000"}
   level={"L"}
   includeMargin={false}
-  imageSettings={{
-    src: "https://static.zpao.com/favicon.png",
-    x: undefined,
-    y: undefined,
-    height: 24,
-    width: 24,
-  }}
+
 />
 
                     </div>
