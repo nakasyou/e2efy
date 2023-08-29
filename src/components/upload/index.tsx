@@ -10,7 +10,10 @@ const blob2BinaryString = (blob: Blob): Promise<string> => {
   })
 }
 const b64ToBuff = (data: string) => {
-  return new Uint8Array([...atob(data)].map(s => s.charCodeAt(0)))
+  const raw = atob(data);
+  return Uint8Array.from(Array.prototype.map.call(raw, (x) => { 
+    return x.charCodeAt(0)
+  }))
 }
 export default (() => {
   const [enableE2ee, setEnableE2ee] = createSignal(false)
