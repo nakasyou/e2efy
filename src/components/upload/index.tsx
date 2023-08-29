@@ -26,13 +26,16 @@ export default (() => {
                 {
                   enableE2ee() && <div>
                     <label>暗号化コード</label>
-                    <input type='text' class="p-3 border border-outline bg-surface text-on-surface" />
+                    <input type='text' class="p-1 border-2 border-outline bg-surface text-on-surface" />
                   </div>
                 }
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <div class="text-center">
+        <button class='button-outlined'>アップロード</button>
       </div>
     </div>
   )
