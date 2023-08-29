@@ -39,7 +39,7 @@ export default (() => {
                     <label>暗号化コード: </label>
                     <input type='text'
                       class="p-1 border-2 border-outline bg-surface text-on-surface"
-                      value={e2eeKey}
+                      value={e2eeKey()}
                       onInput={(evt) => setE2eeKey(evt.target.value)}/>
                   </div>
                 }
@@ -50,7 +50,7 @@ export default (() => {
       </div>
       <div class="text-center">
         <button class='outlined-button' onClick={async () => {
-          alert(e2eeKey)
+          alert(e2eeKey())
           const salt = CryptoJS.lib.WordArray.random(128 / 8);
           const iv = CryptoJS.lib.WordArray.random(128 / 8);
           const metaData: string = CryptoJS.enc.Hex.stringify(salt) + ',' + CryptoJS.enc.Hex.stringify(iv) + ','
