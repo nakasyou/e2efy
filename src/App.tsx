@@ -15,7 +15,7 @@ const App: Component = () => {
     </div>
     <div>
       {
-        hash === '' && <Upload />
+        hash() === '' && <Upload />
       }
     </div>
     <div>
