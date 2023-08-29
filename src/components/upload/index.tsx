@@ -28,7 +28,7 @@ export default (() => {
                 <div>{enableE2ee().toString()}</div>
                 {
                   enableE2ee() && <div>
-                    <label>暗号化コード</label>
+                    <label>暗号化コード: </label>
                     <input type='text' class="p-1 border-2 border-outline bg-surface text-on-surface" />
                   </div>
                 }
