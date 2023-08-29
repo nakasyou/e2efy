@@ -29,9 +29,9 @@ export default (() => {
     <div>
       <div>
         {
-          (shareIndex() !== false) && <div class='fixed w-screen h-screen bg-[#aaaa] flex justify-center items-center top-0 bottom-0'>
+          (shareIndex() !== false) && <div class='fixed w-screen h-screen bg-[#aaaa] flex justify-center items-center top-0 bottom-0 z-10'>
             <div class='elevation-3 bg-surface text-on-surface p-4 rounded-lg m-5'>
-              <div>共有</div>
+              <div class="text-xl">共有</div>
               {
                 (() => {
                   const data = uploadedFiles()[shareIndex()]
@@ -40,25 +40,18 @@ export default (() => {
                     <div>
                       <div>ダウンロードリンク: </div>
                       <div class='overflow-x-scroll'>
-                        <a href={link}>{ link }</a>
+                        <a href={link} class='underline'>{ link }</a>
                       </div>
                     </div>
-                    <div>
+                    <div class="flex justify-center">
                       <QRCodeCanvas
-  value={link}
-  size={100}
-  bgColor={"#ffffff"}
-  fgColor={"#000000"}
-  level={"L"}
-  includeMargin={true}
-  imageSettings={{
-    src: "https://static.zpao.com/favicon.png",
-    x: undefined,
-    y: undefined,
-    height: 24,
-    width: 24,
-  }}
-/>
+                        value={link}
+                        size={100}
+                        bgColor={"#ffffff"}
+                        fgColor={"#000000"}
+                        level={"L"}
+                        includeMargin={true}
+                      />
                     </div>
                   </div>
                 })()
