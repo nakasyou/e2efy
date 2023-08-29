@@ -61,7 +61,7 @@ export default (() => {
             
             const salt = CryptoJS.lib.WordArray.random(128 / 8)
             const iv = CryptoJS.lib.WordArray.random(128 / 8)
-            const metaData: string = CryptoJS.enc.Hex.stringify(salt) + '+' + CryptoJS.enc.Hex.stringify(iv) + '+'
+            const metaData: string = CryptoJS.enc.Hex.stringify(salt) + ',' + CryptoJS.enc.Hex.stringify(iv) + ','
             
             const binaryString = await blob2BinaryString(fileData)
             const encrypted = CryptoJS.AES.encrypt(
@@ -81,15 +81,10 @@ export default (() => {
               }
             )
             const b64 = metaData + encrypted
-            alert(b64)
-            const encBuff = await b64ToBuff(b64)
-            alert(encBuff)
+            
+            fileData = new File([b64], fileData.name)
           }
-
-
-
-         
-
+          alert(fileData)
         }}>アップロード</button>
       </div>
     </div>
