@@ -1,6 +1,7 @@
 import type { Component } from 'solid-js'
 import { createSignal } from "solid-js"
 import CryptoJS from 'crypto-js'
+import {QRCodeCanvas} from 'solid-qr-code'
 
 const blob2BinaryString = (blob: Blob): Promise<string> => {
   return new Promise((resolve) => {
@@ -29,7 +30,7 @@ export default (() => {
       <div>
         {
           (shareIndex() !== false) && <div class='fixed w-screen h-screen bg-[#aaaa] flex justify-center items-center top-0 bottom-0'>
-            <div class='elevation-3 bg-surface text-on-surface p-4 rounded-lg'>
+            <div class='elevation-3 bg-surface text-on-surface p-4 rounded-lg m-5'>
               <div>共有</div>
               {
                 (() => {
@@ -37,8 +38,27 @@ export default (() => {
                   const link = location.href + '#' + data.fileId + (data.password ? `-${data.password}` : '!')
                   return <div>
                     <div>
-                      ダウンロードリンク: 
-                      { link }
+                      <div>ダウンロードリンク: </div>
+                      <div class='overflow-x-scroll'>
+                        <a href={link}>{ link }</a>
+                      </div>
+                    </div>
+                    <div>
+                      <QRCodeSVG
+  value={link}
+  size={100}
+  bgColor={"#ffffff"}
+  fgColor={"#000000"}
+  level={"L"}
+  includeMargin={true}
+  imageSettings={{
+    src: "https://static.zpao.com/favicon.png",
+    x: undefined,
+    y: undefined,
+    height: 24,
+    width: 24,
+  }}
+/>
                     </div>
                   </div>
                 })()
