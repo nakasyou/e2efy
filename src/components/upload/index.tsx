@@ -106,14 +106,16 @@ export default (() => {
       <div>
         <div class="grid grid-cols-3">
           <div>File Name</div>
-          <div>URL</div>
           <div>Remove Password</div>
+          <div></div>
           {
             uploadedFiles().map(data => {
               return [
                 <div>{ data.fileName }</div>,
-                <div>{ `https://end2end.tech/${data.fileId}` }</div>,
                 <div>{ data.removePassword }</div>,
+                <div>
+                  <a class='filled-button'>共有</a>
+                </div>
               ]
             })
           }
