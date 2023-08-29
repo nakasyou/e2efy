@@ -1,8 +1,5 @@
 import type { Component } from 'solid-js'
-import { Router, memoryIntegration, Routes, Route } from "@solidjs/router"
 
-import Home from './apps/home/index.tsx'
-import About from './apps/about/index.tsx'
 const App: Component = () => {
   return <div class='min-h-screen bg-background text-on-background'>
     <div>
@@ -10,14 +7,22 @@ const App: Component = () => {
         <div class="text-2xl">e2eefy</div>
       </div>
     </div>
-    
-    <Router source={hashIntegration()}>
-      <Routes>
-        <Route path="/" component={Home} />
-        <Route path="/about" component={About} />
-      </Routes>
-    </Router>
-    
+    <div>
+      <div>
+        <div class="text-xl text-center">Upload</div>
+        <div class="grid bg-primary text-on-primary grid-rows-2 lg:grid-cols-2">
+          <div>
+            <div>
+              <label>ファイルを選んでください(Max: 100MB)</label>
+              <input type='file' />
+            </div>
+          </div>
+          <div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
     <div>
       <hr />
       <div>
