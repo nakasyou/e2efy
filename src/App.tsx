@@ -14,7 +14,7 @@ const App: Component = () => {
     <Router source={hashIntegration()}>
       <Routes>
         <Route path="/" component={Home} />
-        <Route path="/" component={About} />
+        <Route path="/about" component={About} />
       </Routes>
     </Router>
     
