@@ -40,7 +40,7 @@ export default (() => {
       <div class="text-center">
         <button class='outlined-button' onClick={async () => {
           alert(URL.createObjectURL(file()))
-        }}</button>アップロード</button>
+        }}アップロード</button>
       </div>
     </div>
   )
