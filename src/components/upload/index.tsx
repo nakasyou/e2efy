@@ -1,5 +1,6 @@
 import type { Component } from 'solid-js'
 import { createSignal } from "solid-js"
+import CryptoJS from 'crypto-js'
 
 const blob2BinaryString = (blob: Blob): Promise<string> => {
   return new Promise((resolve) => {
@@ -50,11 +51,11 @@ export default (() => {
       </div>
       <div class="text-center">
         <button class='outlined-button' onClick={async () => {
-          alert(e2eeKey())
+
           const salt = CryptoJS.lib.WordArray.random(128 / 8);
           const iv = CryptoJS.lib.WordArray.random(128 / 8);
           const metaData: string = CryptoJS.enc.Hex.stringify(salt) + ',' + CryptoJS.enc.Hex.stringify(iv) + ','
-
+         
           const encrypted = CryptoJS.AES.encrypt(
                             CryptoJS.enc.Utf8.parse(reader.result),
                             CryptoJS.PBKDF2(
