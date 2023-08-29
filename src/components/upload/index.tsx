@@ -18,7 +18,8 @@ export default (() => {
           <div>
             <div>
               <div>
-                <input type='checkbox' checked={enableE2ee()} onChange={(evt) => {
+                <input type='checkbox' checked={enableE2ee()} onInput={(evt) => {
+      alert(evt.currentTarget.checked)
                   setE2eeEnable(evt.currentTarget.checked)
                 }} />
                 <label>ファイルを暗号化する</label>
