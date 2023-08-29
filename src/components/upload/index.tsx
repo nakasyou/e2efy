@@ -51,27 +51,38 @@ export default (() => {
       </div>
       <div class="text-center">
         <button class='outlined-button' onClick={async () => {
+          let fileData = file() as File
+          if (enableE2ee()) {
+            const password = e2eeKey()
+            
+            const salt = CryptoJS.lib.WordArray.random(128 / 8)
+            const iv = CryptoJS.lib.WordArray.random(128 / 8)
+            const metaData: string = CryptoJS.enc.Hex.stringify(salt) + ',' + CryptoJS.enc.Hex.stringify(iv) + ',' // Add header
+            
+            const binaryString = await blob2BinaryString(fileData)
+            const encrypted = CryptoJS.AES.encrypt(
+              CryptoJS.enc.Utf8.parse(binaryString),
+              CryptoJS.PBKDF2(
+                CryptoJS.enc.Utf8.parse(password),
+                salt,
+                {
+                  keySize: 128 / 8,
+                  iterations: 500
+                }
+              ),
+              {
+                iv: iv,
+                mode: CryptoJS.mode.CBC,
+                padding: CryptoJS.pad.Pkcs7
+              }
+            )
+            alert(encrypted)
+          }
 
-          const salt = CryptoJS.lib.WordArray.random(128 / 8);
-          const iv = CryptoJS.lib.WordArray.random(128 / 8);
-          const metaData: string = CryptoJS.enc.Hex.stringify(salt) + ',' + CryptoJS.enc.Hex.stringify(iv) + ','
+
+
          
-          const encrypted = CryptoJS.AES.encrypt(
-                            CryptoJS.enc.Utf8.parse(reader.result),
-                            CryptoJS.PBKDF2(
-                                CryptoJS.enc.Utf8.parse(_("password").value),
-                                salt,
-                                {
-                                    keySize: 128 / 8,
-                                    iterations: 500
-                                }
-                            ),
-                            {
-                                iv: iv,
-                                mode: CryptoJS.mode.CBC,
-                                padding: CryptoJS.pad.Pkcs7
-                            }
-                        );
+
         }}>アップロード</button>
       </div>
     </div>
