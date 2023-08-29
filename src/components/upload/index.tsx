@@ -60,7 +60,7 @@ export default (() => {
             
             const salt = CryptoJS.lib.WordArray.random(128 / 8)
             const iv = CryptoJS.lib.WordArray.random(128 / 8)
-            const metaData: string = CryptoJS.enc.Hex.stringify(salt) + ',' + CryptoJS.enc.Hex.stringify(iv) + ',' // Add header
+            const metaData: string = CryptoJS.enc.Hex.stringify(salt) + '+' + CryptoJS.enc.Hex.stringify(iv) + '+'
             
             const binaryString = await blob2BinaryString(fileData)
             const encrypted = CryptoJS.AES.encrypt(
@@ -79,7 +79,8 @@ export default (() => {
                 padding: CryptoJS.pad.Pkcs7
               }
             )
-            alert(b64ToBuff(encrypted))
+            const encBuff = b64ToBuff(metaData + encrypted)
+            alert(encBuff)
           }
 
 
