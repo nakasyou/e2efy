@@ -22,6 +22,7 @@
     "@solidjs/router": "^0.8.3",
     "crypto-js": "^4.1.1",
     "mikanui": "^0.1.11",
-    "solid-js": "^1.7.6"
+    "solid-js": "^1.7.6",
+    "solid-qr-code": "^0.0.8"
   }
 }
