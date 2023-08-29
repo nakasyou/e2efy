@@ -3,6 +3,7 @@ import type { Component } from 'solid-js'
 import Upload from './components/upload/index.tsx'
 
 const App: Component = () => {
+  
   return <div class='min-h-screen bg-background text-on-background'>
     <div>
       <div class="flex justify-center">
@@ -10,7 +11,9 @@ const App: Component = () => {
       </div>
     </div>
     <div>
-      <Upload />
+      {
+        location.hash === '' && <Upload />
+      }
     </div>
     <div>
       <hr />
