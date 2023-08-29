@@ -10,7 +10,7 @@ const blob2BinaryString = (blob: Blob): Promise<string> => {
   })
 }
 const b64ToBuff = (data: string) => {
-    return new Uint8Array([...atob(data)].map(s => s.charCodeAt(0)))
+  return new Uint8Array([...atob(data)].map(s => s.charCodeAt(0)))
 }
 export default (() => {
   const [enableE2ee, setEnableE2ee] = createSignal(false)
@@ -79,7 +79,9 @@ export default (() => {
                 padding: CryptoJS.pad.Pkcs7
               }
             )
-            const encBuff = b64ToBuff(metaData + encrypted)
+            const b64 = metaData + encrypted
+            alert(b64)
+            const encBuff = b64ToBuff(b64)
             alert(encBuff)
           }
 
