@@ -6,6 +6,10 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('mikanui').mikanUI({
+      seedColor: '#0f0000',
+    })
+  ],
 }
 
