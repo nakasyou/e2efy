@@ -1,7 +1,36 @@
 import type { Component } from 'solid-js'
 import { createSignal } from 'solid-js'
+import CryptoJS from 'crypto-js'
+
 interface Props {
   hash: () => string
+}
+const decrypto = async (blob: Blob, password: string) => {
+  const result = await blob.text()
+  
+  const decryptionarray = result.split(',')
+  const salt = CryptoJS.enc.Hex.parse(decryptionarray[0])
+  const iv = CryptoJS.enc.Hex.parse(decryptionarray[1])
+  
+  const data = CryptoJS.AES.decrypt({
+            "ciphertext": CryptoJS.enc.Base64.parse(decryptionarray[2])
+          },
+          CryptoJS.PBKDF2(
+            CryptoJS.enc.Utf8.parse(password),
+            salt, {
+              keySize: 128 / 8,
+              iterations: 500
+            }
+          ), {
+            iv: iv,
+            mode: CryptoJS.mode.CBC,
+            padding: CryptoJS.pad.Pkcs7
+          }).toString(CryptoJS.enc.Utf8)
+  return new Blob(
+      [data], {
+        "type": "application/force-download"
+      }
+  )
 }
 export default ((props: Props) => {
   const id = props.hash().split('-')[0].slice(1)
@@ -20,10 +49,18 @@ export default ((props: Props) => {
         <div>
           <button class='outlined-button' onClick={async () => {
             const url = `https://api.end2end.tech/download?id=${id}`
-            const blobUrl = URL.createObjectURL(await fetch(url).then(res => res.blob()))
+            let blob = await fetch(url).then(res => res.blob())
+            if (password()) {
+              try {
+                blob = await decrypto(blob, password())
+              } catch (error) {
+                alert('複合化に失敗しました。パスワードが間違っているかもしれません。')
+                throw error
+              }
+            }
             const aTag = document.createElement('a')
             aTag.download = 'unknown'
-            aTag.href = blobUrl
+            aTag.href = URL.createObjectURL(blob)
             aTag.click(aTag)
           }}>
             Download!
