@@ -17,6 +17,11 @@ export default (() => {
   const [enableE2ee, setEnableE2ee] = createSignal(false)
   const [file, setFile] = createSignal(new Blob())
   const [e2eeKey, setE2eeKey] = createSignal(crypto.randomUUID())
+  const [uploadedFiles, setUploadedFiles] = createSignal<{
+    fileName: string,
+    fileId: string,
+    removePassword: string
+  }[]>([])
   return (
     <div>
       <div class="text-2xl text-center">Upload</div>
@@ -53,7 +58,7 @@ export default (() => {
           </div>
         </div>
       </div>
-      <div class="text-center">
+      <div class="flex justify-center">
         <button class='outlined-button' onClick={async () => {
           let fileData = file() as File
           if (enableE2ee()) {
@@ -90,8 +95,29 @@ export default (() => {
             method: 'post',
             body: formData
           }).then(res => res.json())
+          setUploadedFiles([...uploadedFiles(), {
+            fileName: resJson.FileName,
+            fileId: resJson.FileID,
+            removePassword: resJson.RemovePassword,
+          }])
           alert(JSON.stringify(resJson))
         }}>アップロード</button>
+      </div>
+      <div>
+        <div class="grid grid-cols-3">
+          <div>File Name</div>
+          <div>URL</div>
+          <div>Remove Password</div>
+          {
+            uploadedFiles().map(data => {
+              return [
+                <div>{ data.fileName }</div>,
+                <div>{ `https://end2end.tech/${data.fileId}` }</div>,
+                <div>{ data.removePassword }</div>,
+              ]
+            })
+          }
+        </div>
       </div>
     </div>
   )
