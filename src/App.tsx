@@ -1,9 +1,12 @@
 import type { Component } from 'solid-js'
-
+import { createSignal } from 'solid-js'
 import Upload from './components/upload/index.tsx'
 
 const App: Component = () => {
-  
+  const [hash, setHash] = createSignal(location.hash)
+  window.addEventListener('hashchange', () => {
+    setHash(location.hash)
+  }, false)
   return <div class='min-h-screen bg-background text-on-background'>
     <div>
       <div class="flex justify-center">
@@ -12,7 +15,7 @@ const App: Component = () => {
     </div>
     <div>
       {
-        location.hash === '' && <Upload />
+        hash === '' && <Upload />
       }
     </div>
     <div>
