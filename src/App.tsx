@@ -1,5 +1,7 @@
 import type { Component } from 'solid-js'
 
+import Upload from './components/upload/index.tsx'
+
 const App: Component = () => {
   return <div class='min-h-screen bg-background text-on-background'>
     <div>
@@ -8,20 +10,7 @@ const App: Component = () => {
       </div>
     </div>
     <div>
-      <div>
-        <div class="text-xl text-center">Upload</div>
-        <div class="grid bg-primary text-on-primary grid-rows-2 lg:grid-cols-2">
-          <div>
-            <div>
-              <label>ファイルを選んでください(Max: 100MB)</label>
-              <input type='file' />
-            </div>
-          </div>
-          <div>
-            
-          </div>
-        </div>
-      </div>
+      <Upload />
     </div>
     <div>
       <hr />
