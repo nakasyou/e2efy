@@ -3,6 +3,7 @@ import { createSignal } from "solid-js"
 
 export default (() => {
   const [enableE2ee, setEnableE2ee] = createSignal(false)
+  const [file, setFile] = createSignal(new File())
   return (
     <div>
       <div class="text-2xl text-center">Upload</div>
@@ -10,7 +11,9 @@ export default (() => {
         <div>
           <div>
             <label>ファイルを選んでください(Max: 100MB)</label>
-            <input type='file' />
+            <input type='file' onChange={(evt) => {
+              setFile(evt.target.files[0])
+            }} />
           </div>
         </div>
         <div>
@@ -35,7 +38,9 @@ export default (() => {
         </div>
       </div>
       <div class="text-center">
-        <button class='button-outlined'>アップロード</button>
+        <button class='outlined-button' onClick={async () => {
+          alert(URL.createObjectURL(file()))
+        }}</button>アップロード</button>
       </div>
     </div>
   )
