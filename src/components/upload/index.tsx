@@ -44,7 +44,7 @@ export default (() => {
                       </div>
                     </div>
                     <div>
-                      <QRCodeSVG
+                      <QRCodeCanvas
   value={link}
   size={100}
   bgColor={"#ffffff"}
