@@ -35,7 +35,7 @@ export default (() => {
               {
                 (() => {
                   const data = uploadedFiles()[shareIndex()]
-                  const link = location.href + '#' + data.fileId + (data.password ? `-${data.password}` : '!')
+                  const link = location.href + '#' + data.fileId + (data.password ? `-${data.password}` : '')
                   return <div>
                     <div>
                       <div>ダウンロードリンク: </div>
