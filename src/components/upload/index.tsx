@@ -55,6 +55,7 @@ export default (() => {
 />
 
                     </div>
+                      <div class='' onClick={() => setShareIndex(false)}>Close</div>
                   </div>
                 })()
               }
