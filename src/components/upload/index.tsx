@@ -15,7 +15,7 @@ const b64ToBuff = async (b64) => {
 
 export default (() => {
   const [enableE2ee, setEnableE2ee] = createSignal(false)
-  const [file, setFile] = createSignal(new Blob())
+  const [file, setFile] = createSignal(new File(['q'], 'a'))
   const [e2eeKey, setE2eeKey] = createSignal(crypto.randomUUID())
   const [uploadedFiles, setUploadedFiles] = createSignal<{
     fileName: string,
@@ -86,7 +86,7 @@ export default (() => {
               }
             )
             const b64 = metaData + encrypted
-            
+            alert(
             fileData = new File([b64], fileData.name)
           }
           const formData = new FormData()
