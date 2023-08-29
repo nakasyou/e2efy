@@ -28,8 +28,8 @@ export default (() => {
     <div>
       <div>
         {
-          (shareIndex() !== false) && <div class='fixed w-screen h-screen bg-[#aaaa] flex justify-center items-center'>
-            <div class='elevation-3 bg-surface-container text-on-surface-container p-4 rounded-lg'>
+          (shareIndex() !== false) && <div class='fixed w-screen h-screen bg-[#aaaa] flex justify-center items-center top-0 bottom-0'>
+            <div class='elevation-3 bg-surface text-on-surface p-4 rounded-lg'>
               <div>共有</div>
               {
                 (() => {
