@@ -33,7 +33,7 @@ export default (() => {
             {
               (() => {
                 const data = uploadedFiles()[shareIndex()]
-                const link = location.href + '#' + data.fileId + data.password ? `-${data.password}` : '!
+                const link = location.href + '#' + data.fileId + (data.password ? `-${data.password}` : '!')
                 return <div>
                   <div>
                     ダウンロードリンク: 
@@ -135,9 +135,8 @@ export default (() => {
                 <div>{ data.fileName }</div>,
                 <div>{ data.removePassword }</div>,
                 <div>
-                  <a class='filled-button' onClick={() => {setShareIndex(index)
-
-
+                  <a class='filled-button' onClick={() => {
+                    setShareIndex(index)
                   }}>共有</a>
                 </div>
               ]
