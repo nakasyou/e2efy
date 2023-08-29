@@ -5,7 +5,7 @@ interface Props {
 }
 export default ((props: Props) => {
   const id = props.hash().split('-')[0]
-  const [password, setPassword] = props.hash().split('-').slice(1).join('')
+  const [password, setPassword] = createSignal(props.hash().split('-').slice(1).join(''))
   
   return <div>
     <div>
