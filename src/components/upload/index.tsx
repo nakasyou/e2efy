@@ -82,7 +82,7 @@ export default (() => {
             )
             const b64 = metaData + encrypted
             alert(b64)
-            const encBuff = b64ToBuff(b64)
+            const encBuff = await b64ToBuff(b64)
             alert(encBuff)
           }
 
