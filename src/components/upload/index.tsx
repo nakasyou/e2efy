@@ -86,7 +86,6 @@ export default (() => {
               }
             )
             const b64 = metaData + encrypted
-            alert(
             fileData = new File([b64], fileData.name)
           }
           const formData = new FormData()
