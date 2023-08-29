@@ -10,7 +10,7 @@ const blob2BinaryString = (blob: Blob): Promise<string> => {
   })
 }
 const b64ToBuff = async (b64) => {
-  await fetch(`data:text/plain;base64,${b64}`).then(res => res.arrayBuffer()).then(buff => new Uint8Array(buff))
+  return await fetch(`data:text/plain;base64,${b64}`).then(res => res.arrayBuffer()).then(buff => new Uint8Array(buff))
 }
 
 export default (() => {
