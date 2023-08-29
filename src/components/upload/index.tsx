@@ -23,7 +23,7 @@ export default (() => {
                 }} />
                 <label>ファイルを暗号化する</label>
                 {
-                  enableE2ee && <div>
+                  enableE2ee() && <div>
                     <label>暗号化コード</label>
                     <input type='text' />
                   </div>
