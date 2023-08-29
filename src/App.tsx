@@ -1,6 +1,7 @@
 import type { Component } from 'solid-js'
 import { createSignal } from 'solid-js'
 import Upload from './components/upload/index.tsx'
+import Download from './components/download/index.tsx'
 
 const App: Component = () => {
   const [hash, setHash] = createSignal(location.hash)
@@ -15,7 +16,7 @@ const App: Component = () => {
     </div>
     <div>
       {
-        hash() === '' && <Upload />
+        hash() === '' ? <Upload /> : <Download hash={hash} />
       }
     </div>
     <div>
