@@ -28,20 +28,22 @@ export default (() => {
     <div>
       <div>
         {
-          (shareIndex() !== false) && <div class='fixed'>
-            <div>共有</div>
-            {
-              (() => {
-                const data = uploadedFiles()[shareIndex()]
-                const link = location.href + '#' + data.fileId + (data.password ? `-${data.password}` : '!')
-                return <div>
-                  <div>
-                    ダウンロードリンク: 
-                    { link }
+          (shareIndex() !== false) && <div class='fixed w-screen h-screen bg-[#aaaa] flex justify-center items-center'>
+            <div class='elevation-3 bg-surface-container text-on-surface-container p-4 rounded-lg'>
+              <div>共有</div>
+              {
+                (() => {
+                  const data = uploadedFiles()[shareIndex()]
+                  const link = location.href + '#' + data.fileId + (data.password ? `-${data.password}` : '!')
+                  return <div>
+                    <div>
+                      ダウンロードリンク: 
+                      { link }
+                    </div>
                   </div>
-                </div>
-              })()
-            }
+                })()
+              }
+            </div>
           </div>
         }
       </div>
